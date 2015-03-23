@@ -1,0 +1,83 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>PronounceMe! App</title>
+<link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="js/jquery.min.js"></script>
+<!-- Custom Theme files -->
+<link href="css/style.css" rel='stylesheet' type='text/css' />
+<!-- Custom Theme files -->
+<link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800,300' rel='stylesheet' type='text/css'>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--Script code for time-out on easing and move-top transitions on -->
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<script type="text/javascript" src="js/move-top.js"></script>
+<script type="text/javascript" src="js/easing.js"></script>
+					<script type="text/javascript">
+					jQuery(document).ready(function($) {
+						$(".scroll").click(function(event){		
+							event.preventDefault();
+							$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+						});
+					});
+					</script>
+<script type="text/javascript" src="js/jquery.jscrollpane.min.js"></script>
+		<script type="text/javascript" id="sourcecode">
+			$(function()
+			{
+				$('.scroll-pane').jScrollPane();
+			});
+		</script>
+<!---->
+</head>
+<body>
+	<!--- Header Starts Here --->
+	<div class="header" id="home">
+		<div class="container">
+			<div class="logo">
+				 <br><br><br><br>
+			</div>
+				</div> 
+				<div class="clearfix"></div>
+				<div class="header-bottom">
+					<input type="text" name="text" placeholder="Text here..."><br><br>
+					<a href="#" class="say">SPEAK</a>
+					<audio src="" class="speech" hidden></audio>
+					<!--API SCRIPT: I am using Google Translate Phonetical Reader for correct Pronunciation-->
+					<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+								<script>
+									$(function(){
+										$('a.say').on('click',function(e){
+											e.preventDefault(); <!--For the link not to jump anywhere-->
+											var text = $('input[name="text"]').val();
+											text = encodeURIComponent(text); <!-- Text encoder from simple text to UTI text -->
+											console.log(text);
+											var url = "https://translate.google.com/translate_tts?ie=UTF-8&q=" + text + "&tl=en"; <!-- another API link for getting the text that must be spoken-->
+											$('audio').attr('src', url).get(0).play();<!-- this is for getting the response of the API and throwing it to the hidden audio. -->
+										});
+									});
+								</script>
+					<!--End of API Script-->
+				</div>
+		</div>
+	</div>
+	<!--- Header Ends Here --->
+	
+	<!-- Footer Starts Here ---->
+	<div class="footer" position="fixed">
+		<div class="container">
+			<div class="footer-top" position="fixed">
+				 <a href="index.html"><img src="images/logo-bot.png" class="img-responsive" alt=""/></a>
+			</div>
+			<p class="footer-head">PronounceMe!<br><br>
+			Correct Pronunciation App for English Speakers.
+			</p>
+			<div class="clearfix"></div>
+		</div>
+	</div>
+	<!-- Footer Ends Here ---->
+</body>
+</html>
+	
